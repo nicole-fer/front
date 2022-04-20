@@ -59,3 +59,50 @@
             </div>
         </div>
     </main>
+
+       <!-- Compiled and minified JavaScript -->
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+       <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+   
+       <script>
+               //let dados = $("#form-register").serialize()
+   
+           const registrarUsuario = () => {
+               let name=document.querySelector("#name")
+               let email=document.querySelector("#email")
+               let password=document.querySelector("#password")
+               let form=document.querySelector("#form-register")
+   
+               $.ajax({
+                   method: "POST",
+                   headers: {
+                       "Accept": "application/json",
+                       "Content-Type": "application/json"
+                   },
+                   url: 'http://172.16.34.244:1500/api/user/register',
+                   data: $('#form-register').serialize(),
+                   beforeSend: console.log(name.value),
+                   beforeSend: console.log(email.value),
+                   beforeSend: console.log(password.value),
+                   complete: console.log('Terminei requisição'),
+                   "timeout": 0,
+                   "data": JSON.stringify({
+                   "name": `${name.value}`,
+                   "email": `${email.value}`,
+                   "password": `${password.value}`
+               }),
+                   success: function(response) {
+                       console.log('Resposta registro usuário',response)
+                   },
+                   error: function(error) {
+                       erro = error.responseJSON.message
+                       alert(erro)
+                   }
+               })
+           }
+       </script>
+   
+   </body>
+   
+   </html>
