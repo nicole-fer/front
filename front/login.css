@@ -1,6 +1,6 @@
 @charset "UTF-8";
 body {
-    background: url(imagens/bg-login.svg);
+    background: url(images/bg-login.svg);
     background-size: 100% 100%;
     background-position: center;
     display: table;
@@ -24,5 +24,5 @@ main {
     position: absolute;
     top: 50px;
     left: 70px;
-    background: url(imagens/logo3.png) 0 0 no-repeat;
+    background: url(images/logo3.png) 0 0 no-repeat;
 }

@@ -20,7 +20,7 @@
             <div class="col s12 m7">
                 <div class="card">
                     <div class="card-image">
-                        <img src="imagens/login-card-bg.jpg">
+                        <img src="images/login-card-bg.jpg">
                         <span class="card-title"></span>
 
                         <div class="card-image-logo">
@@ -53,3 +53,46 @@
             </div>
         </div>
     </main>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</body>
+
+<script>
+
+  const login = () => {
+      let email = $("#email").val()
+      let password = document.querySelector("#password")
+      $.ajax({
+          method: "POST",
+          headers: {
+              "Accept": "application/json",
+              "Content-Type": "application/json",
+          },
+          url: 'http://172.16.34.244:1500/api/user/getAccessToken',
+          beforeSend: function() {
+          }, 
+          complete: console.log('Terminei requisição'),
+          "timeout": 0,
+          "data": JSON.stringify({
+              "email": `${email}`,
+              "password": `${password.value}`
+          }),
+          success: function(response) {
+              //Salva no local storage o valor de response.token na chave token
+              localStorage.setItem('token', response.token)
+              window.location = "form.html"
+          },
+          error: function(error) {
+              alert(error.responseJSON.message)
+          }
+      })
+  }
+
+  function registrar(){
+      window.location.href="register.html"
+  }
+</script>
+
+</html>
