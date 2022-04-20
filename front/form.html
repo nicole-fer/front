@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <link rel="stylesheet" href="form.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <main>              <!--Formulário-->
+        <h1> <i class="small material-icons">assignment_ind</i>Dados Pessoais</h1>
+        <div class="row">
+            <form id="form-cadastro" class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input placeholder="CPF" name="txtcpf" id="txtcpf" type="text" class="validate" >
+                        <label for="cpf"></label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input placeholder="CadSus" name="txtcadSus" id="txtcadSus" type="text" class="validate">
+                        <label for="CadSus"></label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input placeholder="Nome Completo" name="txtname" id="txtname" type="text" class="validate">
+                        <label for="name"></label>
+                    </div>
+                    <div class="input-field col s4">
+                        <input placeholder="DD/MM/AAAA" name="txtdate" id="txtdate" type="text" class="datepicker" data-mask="00/00/0000">
+                    </div>
+                    <div class="input-field col s4">
+                        <select name="txtSexo" id="txtSexo">
+                          <option value=""selected disabled></option>
+                          <option value="Feminino">Feminino</option>
+                          <option value="Masculino">Masculino</option>
+                        </select>
+                        <label>Sexo</label>
+                    </div>
+                    <div class="input-field col s4">
+                        <select name="txtCor" id="txtCor">
+                          <option  value=""selected disabled></option>
+                          <option value="Branca">Branca</option>
+                          <option value="Amarela">Amarela</option>
+                          <option value="Parda">Parda</option>
+                          <option value="Preta">Preta</option>
+                          <option value="Indigena">Indigena</option>
+                        </select>
+                        <label>Raça/Cor</label>
+                    </div>
+                    <div class="input-field col s8">
+                        <input placeholder="Mãe" id="txtmae" type="text" class="validate">
+                        <label for="mae"></label>
+                    </div>
+                    <div class="input-field col s3">
+                        <label>
+                            <input name="checkboxMae" id="checkboxMae" type="checkbox" onclick="desabilitaMae('sim')" />
+                            <span>Mãe Desconhecida</span>
+                          </label>
+                    </div>
+                    <div class="input-field col s8">
+                        <input placeholder="Pai" name="txtpai" id="txtpai" type="text" class="validate">
+                        <label for="pai"></label>
+                    </div>
+                    <div class="input-field col s3">
+                        <label>
+                            <input name="checkboxPai" id="checkboxPai" type="checkbox" onclick="desabilitaPai('sim')" />
+                            <span>Pai Desconhecido</span>
+                          </label>
+                    </div>
+
+                    <div class="input-field col s5">
+                        <select id="uf" name="uf">
+                            <option value="">Selecione o Estado</option>
+                        </select>
+                        <label>Estado Nascimento</label>
+                    </div>
+
+                    <div class="input-field col s5">
+                        <select id="city" name="city">
+                          <option value="">Selecione o Estado</option>
+                        </select>
+                        <label>Cidade</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <label>
+                            <input name="checkboxFaleceu" type="checkbox" />
+                            <span>Faleceu?</span>
+                          </label>
+                    </div>
+
+                    <div class="input-field col s4">
+                        <br><br>
+                        <a class="waves-effect grey darken-3 btn" value="Salvar Dados" class="butt" onclick="save()" >Salvar Dados</a>
+                    </div>
+                    <div class="input-field col s4">
+                        <br><br>
+                        <a class="waves-effect grey darken-3 btn" value="Apagar Dados" class="butt" onclick="delet()">Limpar Formulário</a>
+                    </div>
+                                       
+                        <div class="input-field col s4">
+                    <br><br>
+                        <a class="waves-effect blue accent-3 btn" value="Registrar Dados" class="butt" onclick="logout()">Logout</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <hr>
