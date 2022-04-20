@@ -180,3 +180,20 @@
                 }
             })
         }
+
+        function desabilitaMae(valor) {
+            var status = document.getElementById('txtmae').disabled
+            if (valor === 'sim' && !status) {
+                document.getElementById('txtmae').disabled = true
+            } else {
+                document.getElementById('txtmae').disabled = false
+            }
+        }
+        function desabilitaPai(valor) {
+            var status = document.getElementById('txtpai').disabled
+            if (valor === 'sim' && !status) {
+                document.getElementById('txtpai').disabled = true
+            } else {
+                document.getElementById('txtpai').disabled = false
+            }
+        }
