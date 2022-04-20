@@ -141,3 +141,42 @@
             var sel = document.querySelectorAll('select');
             M.FormSelect.init(sel);
         });
+
+        /*  pegar os dados de Estado e Cidade */
+        const getUf = () => {
+            $.ajax({
+                url: 'http://172.16.34.244:1500/api/uf',
+                success: function(response) {
+                    $("#uf").html('<option value="">Selecione o Estado</option>')
+                    $.each(response, function(index, value) {
+                        $("#uf").append(
+                            `<option value="${value.id}">${value.uf_full_name} (${value.uf})</option>`
+                        )
+                    })
+                    M.FormSelect.init(document.getElementById('uf'))
+                },
+                error: function(error) {
+                    erro = error.responseJSON.message
+                    alert(erro)
+                }
+            })
+        }
+        const getCityByUf = (uf_id) => {
+            $.ajax({
+                url: 'http://172.16.34.244:1500/api/city',
+                data: {"uf_id" : uf_id},
+                success: function(response) {
+                    $("#city").html('<option value="">Selecione a Cidade</option>')
+                    $.each(response.data, function(index, value) {
+                        $("#city").append(
+                            `<option value="${value.id}">${value.city}</option>`
+                        )
+                    })
+                    M.FormSelect.init(document.getElementById('city'))
+                },
+                error: function(error) {
+                    erro = error.responseJSON.message
+                    alert(erro)
+                }
+            })
+        }
