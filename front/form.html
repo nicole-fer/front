@@ -265,4 +265,33 @@
                         }
                     }) 
                 }
+                const getPessoas1 = () => {
+                    const token = localStorage.getItem("token")
+                    $.ajax({
+                        url: "http://172.16.34.244:1500/api/people/show",
+                        headers: {
+                            "Accept": "application/json",
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`
+                        },
+                        success: function(response){
+                            $("#lista-pessoas").html("")
+                            $.each(response[0], (index,value) => {
+                                $("#lista-pessoas").append(`
+                                    <tr>
+                                        <td>${value.name}</td> 
+                                        <td>${value.cpf}</td>
+                                        <td>${value.birthdate}</td>
+                                        <td></td>
+                                    </tr>
+                                `)
+                            })
+                        },
+                        error: function(error){
+                            $("#lista-pessoas").html('<tr><td colspan="4">Sem Registros</td></tr>')
+                            erro = error.responseJSON.message
+                            alert(erro)
+                        }
+                    }) 
+                }
     </script>
