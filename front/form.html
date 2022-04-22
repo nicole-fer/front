@@ -222,76 +222,87 @@
                         }
                     })
                 }
-                function save() { 
-                    let name =  $("#txtname").val()
-                    let cpf = $("#txtcpf").val()
-                    let birthdate = $("#txtdate").val().split('/')
-                    birthdate= birthdate[1]+"-"+birthdate[0]+"-"+birthdate[2]
-                    let cadsus = $("#txtcadSus").val()
-                    cadsus = cadsus.split(' ').join('')
-                    let sexo = $("#txtSexo").val()
-                    let ethnicity = $("#txtCor").val()
-                    let uf_id = $("#uf").val()
-                    let city_id = $("#city").val()
+            function save() { 
+                let name =  $("#txtname").val()
+                let cpf = $("#txtcpf").val()
+                let birthdate = $("#txtdate").val().split('/')
+                birthdate= birthdate[1]+"-"+birthdate[0]+"-"+birthdate[2]
+                let cadsus = $("#txtcadSus").val()
+                cadsus = cadsus.split(' ').join('')
+                let sexo = $("#txtSexo").val()
+                let ethnicity = $("#txtCor").val()
+                let uf_id = $("#uf").val()
+                let city_id = $("#city").val()
 
-                    const token = localStorage.getItem("token");
+                const token = localStorage.getItem("token");
 
-                    $.ajax({
-                        method: "POST",
-                        headers: {
-                            "Accept": "application/json",
-                            "Content-Type": "application/json",
-                            "Authorization": `Bearer ${token}`
-                        },
-                        url: 'http://172.16.34.244:1500/api/people/create',
-                        timeout: 0,
-                        data: JSON.stringify({
-                            name:`${name}`,
-                            cpf:`${cpf}`,
-                            birthdate:`${birthdate}`,
-                            cadsus:`${cadsus}`,
-                            sexo: `${sexo}`,
-                            ethnicity: `${ethnicity}`,
-                            uf_id: `${uf_id}`,
-                            city_id: `${city_id}`
-                        }),
-                        success: function(response) {
-                            alert("Pessoa Cadastrada com Sucesso")
-                            $('#dados').append('Name')
-                        },
-                        error: function(error) {
-                            erro = error.responseJSON.message
-                            alert(erro)
-                        }
-                    }) 
-                }
-                const getPessoas1 = () => {
-                    const token = localStorage.getItem("token")
-                    $.ajax({
-                        url: "http://172.16.34.244:1500/api/people/show",
-                        headers: {
-                            "Accept": "application/json",
-                            "Content-Type": "application/json",
-                            "Authorization": `Bearer ${token}`
-                        },
-                        success: function(response){
-                            $("#lista-pessoas").html("")
-                            $.each(response[0], (index,value) => {
-                                $("#lista-pessoas").append(`
-                                    <tr>
-                                        <td>${value.name}</td> 
-                                        <td>${value.cpf}</td>
-                                        <td>${value.birthdate}</td>
-                                        <td></td>
-                                    </tr>
-                                `)
-                            })
-                        },
-                        error: function(error){
-                            $("#lista-pessoas").html('<tr><td colspan="4">Sem Registros</td></tr>')
-                            erro = error.responseJSON.message
-                            alert(erro)
-                        }
-                    }) 
-                }
+                $.ajax({
+                    method: "POST",
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    url: 'http://172.16.34.244:1500/api/people/create',
+                    timeout: 0,
+                    data: JSON.stringify({
+                        name:`${name}`,
+                        cpf:`${cpf}`,
+                        birthdate:`${birthdate}`,
+                        cadsus:`${cadsus}`,
+                        sexo: `${sexo}`,
+                        ethnicity: `${ethnicity}`,
+                        uf_id: `${uf_id}`,
+                        city_id: `${city_id}`
+                    }),
+                    success: function(response) {
+                        alert("Pessoa Cadastrada com Sucesso")
+                        $('#dados').append('Name')
+                    },
+                    error: function(error) {
+                        erro = error.responseJSON.message
+                        alert(erro)
+                    }
+                }) 
+            }
+            const getPessoas1 = () => {
+                const token = localStorage.getItem("token")
+                $.ajax({
+                    url: "http://172.16.34.244:1500/api/people/show",
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    success: function(response){
+                        $("#lista-pessoas").html("")
+                        $.each(response[0], (index,value) => {
+                            $("#lista-pessoas").append(`
+                                <tr>
+                                    <td>${value.name}</td> 
+                                    <td>${value.cpf}</td>
+                                    <td>${value.birthdate}</td>
+                                    <td></td>
+                                </tr>
+                            `)
+                        })
+                    },
+                    error: function(error){
+                        $("#lista-pessoas").html('<tr><td colspan="4">Sem Registros</td></tr>')
+                        erro = error.responseJSON.message
+                        alert(erro)
+                    }
+                }) 
+            }
+            
+            function delet() { //LIMPA OS CAMPOS DO FORMULARIO
+                window.location.href="form.html"
+            }
+
+            function logout(){
+                localStorage.clear()
+                window.location.href="login.html"
+            }
     </script>
+</body>
+</html>
