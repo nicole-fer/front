@@ -197,5 +197,29 @@
                     document.getElementById('txtpai').disabled = false
                 }
             }
-            
+                   //verifica se o token é valido e autoriza o login
+            const estaAutorizado = () => {
+            const token = localStorage.getItem("token");
+            if(!localStorage.getItem("token")) {
+                alert('Não autenticado')
+                window.location = "login.html"
+            }
+            $.ajax({
+                    url:'http://172.16.34.244:1500/api/user',
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    success: function(response){
+                        localStorage.setItem('nome_usuario_logado', response.name)
+                        localStorage.setItem('id_usuario_logado', response.id)
+                    },
+                    error: function(error) {
+                        erro = error.responseJSON.message
+                        window.location = "login.html"
+                        alert(erro)
+                    }
+                })
+        }
     </script>
