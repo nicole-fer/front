@@ -197,29 +197,72 @@
                     document.getElementById('txtpai').disabled = false
                 }
             }
-                   //verifica se o token é valido e autoriza o login
+            //verifica se o token é valido e autoriza o login
             const estaAutorizado = () => {
-            const token = localStorage.getItem("token");
-            if(!localStorage.getItem("token")) {
-                alert('Não autenticado')
-                window.location = "login.html"
-            }
-            $.ajax({
-                    url:'http://172.16.34.244:1500/api/user',
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
-                    },
-                    success: function(response){
-                        localStorage.setItem('nome_usuario_logado', response.name)
-                        localStorage.setItem('id_usuario_logado', response.id)
-                    },
-                    error: function(error) {
-                        erro = error.responseJSON.message
-                        window.location = "login.html"
-                        alert(erro)
-                    }
-                })
-        }
+                const token = localStorage.getItem("token");
+                if(!localStorage.getItem("token")) {
+                    alert('Não autenticado')
+                    window.location = "login.html"
+                }
+                $.ajax({
+                        url:'http://172.16.34.244:1500/api/user',
+                        headers: {
+                            "Accept": "application/json",
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`
+                        },
+                        success: function(response){
+                            localStorage.setItem('nome_usuario_logado', response.name)
+                            localStorage.setItem('id_usuario_logado', response.id)
+                        },
+                        error: function(error) {
+                            erro = error.responseJSON.message
+                            window.location = "login.html"
+                            alert(erro)
+                        }
+                    })
+                }
+                function save() { 
+                    let name =  $("#txtname").val()
+                    let cpf = $("#txtcpf").val()
+                    let birthdate = $("#txtdate").val().split('/')
+                    birthdate= birthdate[1]+"-"+birthdate[0]+"-"+birthdate[2]
+                    let cadsus = $("#txtcadSus").val()
+                    cadsus = cadsus.split(' ').join('')
+                    let sexo = $("#txtSexo").val()
+                    let ethnicity = $("#txtCor").val()
+                    let uf_id = $("#uf").val()
+                    let city_id = $("#city").val()
+
+                    const token = localStorage.getItem("token");
+
+                    $.ajax({
+                        method: "POST",
+                        headers: {
+                            "Accept": "application/json",
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`
+                        },
+                        url: 'http://172.16.34.244:1500/api/people/create',
+                        timeout: 0,
+                        data: JSON.stringify({
+                            name:`${name}`,
+                            cpf:`${cpf}`,
+                            birthdate:`${birthdate}`,
+                            cadsus:`${cadsus}`,
+                            sexo: `${sexo}`,
+                            ethnicity: `${ethnicity}`,
+                            uf_id: `${uf_id}`,
+                            city_id: `${city_id}`
+                        }),
+                        success: function(response) {
+                            alert("Pessoa Cadastrada com Sucesso")
+                            $('#dados').append('Name')
+                        },
+                        error: function(error) {
+                            erro = error.responseJSON.message
+                            alert(erro)
+                        }
+                    }) 
+                }
     </script>
