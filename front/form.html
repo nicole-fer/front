@@ -120,23 +120,23 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="jquery.mask.min.js"></script>
 
-<script>
+    <script>
 
-    /*  mascaras em jquery  */
-    $('document').ready(function(){
+        /*  mascaras em jquery  */
+        $('document').ready(function(){
             estaAutorizado();
             $("#txtcpf").mask('000.000.000-00')
             $("#txtcadSus").mask('000 0000 0000 0000')
             $("#txtdate").mask("00/00/0000");
             getUf()
             getPessoas1()
-            
+                
         });
         $('#uf').change(function(){
             getCityByUf($('#uf').val())
         })
 
-        /// select em JS
+            /// select em JS
         document.addEventListener('DOMContentLoaded', function() {
             var sel = document.querySelectorAll('select');
             M.FormSelect.init(sel);
@@ -181,19 +181,21 @@
             })
         }
 
-        function desabilitaMae(valor) {
-            var status = document.getElementById('txtmae').disabled
-            if (valor === 'sim' && !status) {
-                document.getElementById('txtmae').disabled = true
-            } else {
-                document.getElementById('txtmae').disabled = false
+            function desabilitaMae(valor) {
+                var status = document.getElementById('txtmae').disabled
+                if (valor === 'sim' && !status) {
+                    document.getElementById('txtmae').disabled = true
+                } else {
+                    document.getElementById('txtmae').disabled = false
+                }
             }
-        }
-        function desabilitaPai(valor) {
-            var status = document.getElementById('txtpai').disabled
-            if (valor === 'sim' && !status) {
-                document.getElementById('txtpai').disabled = true
-            } else {
-                document.getElementById('txtpai').disabled = false
+            function desabilitaPai(valor) {
+                var status = document.getElementById('txtpai').disabled
+                if (valor === 'sim' && !status) {
+                    document.getElementById('txtpai').disabled = true
+                } else {
+                    document.getElementById('txtpai').disabled = false
+                }
             }
-        }
+            
+    </script>
